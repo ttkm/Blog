@@ -1,4 +1,4 @@
-baseURL = 'https://localhost:1313/'
+baseURL = 'https://blog.ttkm.net/'
 languageCode = 'en-us'
 # Multiline title (ASCII art) using TOML triple-quoted string
 title = """
