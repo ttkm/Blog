@@ -1,0 +1,18 @@
+<header class="header">
+    <span class="header__inner">
+        {{ partial "logo.html" . }}
+
+        <span class="header__right">
+            <div class="header__top-right">
+                <span class="header__site-name"><a href="{{ .Site.BaseURL | relLangURL }}">ttkm.net</a></span>
+                <nav class="header__nav">
+                    <a href="{{ "posts/" | relLangURL }}">posts</a><span class="header__sep">|</span><a href="{{ .Site.BaseURL | relLangURL }}">home</a><span class="header__sep">|</span><a href="#" id="header-search-link" aria-label="Search posts">search</a>
+                </nav>
+            </div>
+
+            {{- if .Site.Params.EnableThemeToggle }}
+                <span class="theme-toggle not-selectable">{{ partial "theme-toggle-icon.html" . }}</span>
+            {{- end }}
+        </span>
+    </span>
+</header>

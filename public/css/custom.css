@@ -1,0 +1,907 @@
+/* ========== Old Steam green UI – colours & fonts ==========
+ * Sources (green era):
+ * - OGSteam / original Steam client (config.css-style palette)
+ * - MapleAtMorning/OldSteam-Theme – https://github.com/MapleAtMorning/OldSteam-Theme
+ * - AlpyneDreams/vgui.css – classic VGUI (steam_shared.less, greensteam)
+ * Fonts: Helvetica Neue (body), Bank Gothic (headings). Bank Gothic not on Google Fonts;
+ * Oswald is loaded as web fallback for headings when Bank Gothic isn’t installed.
+ */
+:root {
+  /* OGSteam / OldSteam-Theme palette */
+  --LightGreenBG: #5a6a50;
+  --GreenBG: #4c5844;
+  --DarkHeaderBG: #1f1f1f;
+  --DarkGreenBG: #3e4637;
+  --BorderBright: #808080;
+  --BorderDark: #282e22;
+  --OffWhite: #d8ded3;
+  --Maize: #c4b550;
+  --MaizeBG: #91863c;
+  --Label: #a0aa95;
+  --DimListText: #758666;
+  --DisabledText1: #75806f;
+  --DisabledText2: #282e22;
+  --FullGreen: #7ea64b;
+
+  /* vgui.css steam_shared.less (classic green VGUI) */
+  --LightPrimary: #4c5844;
+  --AlmostLightPrimary: #4a5942;
+  --LighterPrimary: #5a6a50;
+  --ShadeLight: #899281;
+  --ShadeLighter: #b8c4ad;
+  --ShadeDark: #292d23;
+  --Secondary: #c4b550;
+  --DarkSecondary: #96892d;
+
+  /* TF2-Esque: comment out OG block and uncomment below to switch */
+  /*
+  --LightGreenBG: #a39884;
+  --GreenBG: #393532;
+  --DarkGreenBG: #221f1c;
+  --BorderBright: #4a453d;
+  --BorderDark: #4a453d;
+  --OffWhite: #d9d9d9;
+  --Maize: #c4b550;
+  --MaizeBG: #91863c;
+  --Label: #c8bca2;
+  --DimListText: #c8bca2;
+  --DisabledText1: #575248;
+  --DisabledText2: #575248;
+  --FullGreen: #4a453d;
+  */
+
+  --Inset: 1px inset var(--BorderBright);
+  --Outset: 1px outset var(--BorderBright);
+  /* Classic VGUI 3D border: light top/right, dark bottom/left */
+  --BorderOutset: 1px solid var(--ShadeLight);
+  --BorderOutsetBottomLeft: 1px solid var(--ShadeDark);
+  --BorderInset: 1px solid var(--ShadeDark);
+  --BorderInsetBottomLeft: 1px solid var(--ShadeLight);
+  --MaizeFilter: brightness(0) saturate(100%) invert(75%) sepia(22%) saturate(895%) hue-rotate(15deg) brightness(90%) contrast(95%);
+  --OffWhiteFilter: brightness(0) saturate(100%) invert(93%) sepia(10%) saturate(157%) hue-rotate(50deg) brightness(95%) contrast(91%);
+  --DisabledText1Filter: brightness(0) saturate(100%) invert(52%) sepia(22%) saturate(374%) hue-rotate(49deg) brightness(93%) contrast(91%);
+
+  /* Body: Helvetica Neue (Steam UI style). Headings: Bank Gothic (install locally) or Oswald (web fallback). */
+  --font-steam: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-heading: "Bank Gothic", "Oswald", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* ========== Apply OG Steam theme + font ========== */
+html {
+  font-family: var(--font-steam);
+}
+
+body {
+  background-color: var(--GreenBG) !important;
+  color: var(--OffWhite) !important;
+  font-family: var(--font-steam) !important;
+}
+
+/* Header & menu – VGUI-style panel border */
+.header,
+.menu,
+.menu__inner,
+.submenu,
+.submenu .dropdown-content {
+  background: var(--DarkGreenBG) !important;
+  border-top: var(--BorderOutset) !important;
+  border-right: var(--BorderOutset) !important;
+  border-bottom: var(--BorderOutsetBottomLeft) !important;
+  border-left: var(--BorderOutsetBottomLeft) !important;
+}
+
+.header {
+  background: var(--DarkHeaderBG) !important;
+}
+
+.menu a,
+.header a,
+.menu .dropbtn,
+.submenu .dropdown-content a {
+  color: var(--OffWhite) !important;
+}
+
+.menu a:hover,
+.submenu .dropdown-content a:hover {
+  color: var(--Maize) !important;
+  background: var(--GreenBG) !important;
+}
+
+/* Header top-right: ttkm.net above, posts | home | search */
+.header__top-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+.header__site-name {
+  font-family: var(--font-heading) !important;
+  font-size: 0.95rem;
+  margin-bottom: 0.2em;
+}
+.header__site-name a {
+  font-family: inherit !important;
+  color: var(--OffWhite) !important;
+  text-decoration: none !important;
+}
+.header__site-name a:hover {
+  color: var(--Maize) !important;
+}
+.header__nav {
+  font-size: 0.9rem;
+}
+.header__nav a {
+  color: var(--Label) !important;
+  text-decoration: none !important;
+}
+.header__nav a:hover {
+  color: var(--Maize) !important;
+}
+.header__sep {
+  margin: 0 0.4em;
+  color: var(--DimListText) !important;
+  user-select: none;
+}
+
+/* Logo */
+.logo,
+.logo__text {
+  color: var(--OffWhite) !important;
+  font-family: var(--font-heading) !important;
+}
+
+.logo__cursor {
+  background: var(--Maize) !important;
+}
+
+/* Main content area */
+.content,
+.container,
+.content-center,
+.posts {
+  background-color: var(--GreenBG) !important;
+  color: var(--OffWhite) !important;
+}
+
+/* ASCII art site title: non-selectable, flip-on-hover chain reaction */
+.site-title-ascii {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 92ch;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-wrap: break-word;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: default;
+  perspective: 400px;
+}
+
+.site-title-ascii .ascii-line {
+  white-space: pre;
+  font-family: Consolas, "Courier New", monospace !important;
+  font-size: clamp(0.65rem, 2.2vw, 1.6rem);
+  line-height: 1.4;
+  margin: 0.1em 0;
+}
+
+.site-title-ascii .ascii-char {
+  display: inline-block;
+  transition: transform 0.35s ease, opacity 0.5s ease-out, filter 0.5s ease-out;
+  transform-origin: center center;
+  filter: brightness(1);
+}
+/* Phrase letters: slightly dim by default so they can fade up/down when highlighted */
+.site-title-ascii .ascii-char.msg-letter {
+  opacity: 0.88;
+}
+
+.site-title-ascii .ascii-char.flip {
+  animation: ascii-flip 0.5s ease forwards;
+}
+
+@keyframes ascii-flip {
+  0%   { transform: rotateX(0deg); }
+  50%  { transform: rotateX(180deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+/* Hidden message: brighten letters that spell "rise and shine mr freeman" for 2.5s on hover */
+.site-title-ascii .ascii-char.msg-highlight {
+  opacity: 1;
+  filter: brightness(1.2);
+  
+}
+
+/* Explicit fade-out animation so return to normal is smooth */
+.site-title-ascii .ascii-char.msg-fade-out {
+  animation: msg-fade-out 0.55s ease-out forwards;
+}
+@keyframes msg-fade-out {
+  from {
+    opacity: 1;
+    filter: brightness(1.35);
+  }
+  to {
+    opacity: 0.88;
+    filter: brightness(1);
+  }
+}
+
+/* Typography – headings use Bank Gothic / Oswald */
+h1, h2 {
+  color: var(--Secondary) !important;
+  font-family: var(--font-heading) !important;
+}
+h3, h4, h5, h6 {
+  color: var(--OffWhite) !important;
+  font-family: var(--font-heading) !important;
+}
+
+em, i, strong {
+  color: var(--Label) !important;
+}
+
+/* Links */
+a {
+  color: var(--Maize) !important;
+}
+
+a:hover {
+  color: var(--OffWhite) !important;
+}
+
+.content a,
+main a,
+.post-body a,
+article a,
+.posts .post-title a {
+  color: var(--Maize) !important;
+}
+
+.content a:hover,
+main a:hover,
+.post-body a:hover,
+article a:hover {
+  color: var(--OffWhite) !important;
+}
+
+/* Blockquote */
+blockquote {
+  border-left-color: var(--Maize) !important;
+  background: var(--DarkGreenBG) !important;
+  color: var(--Label) !important;
+}
+
+/* Inline code only – single box (inside paragraphs). Do NOT style code inside pre/.highlight. */
+:not(pre) > code,
+.content :not(pre) > code,
+main :not(pre) > code {
+  background: var(--DarkGreenBG) !important;
+  color: var(--Label) !important;
+  border-top: var(--BorderInset) !important;
+  border-right: var(--BorderInset) !important;
+  border-bottom: var(--BorderInsetBottomLeft) !important;
+  border-left: var(--BorderInsetBottomLeft) !important;
+}
+
+/* Fenced code blocks – single box on .highlight only; inner code has no box */
+pre {
+  background: transparent !important;
+  border: none !important;
+  color: var(--OffWhite) !important;
+  opacity: 0.7 !important;
+}
+
+pre .code,
+pre code,
+.highlight code {
+  background: none !important;
+  border: none !important;
+  color: inherit !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Unordered lists in post content: square bullets */
+.post-content ul {
+  list-style-type: square !important;
+  list-style-position: outside !important;
+}
+
+/* Dividers & borders */
+hr {
+  background: var(--BorderDark) !important;
+}
+
+.posts:not(:last-of-type) {
+  border-bottom-color: var(--BorderDark) !important;
+}
+
+/* Buttons – classic VGUI raised border, square (no radius) */
+button,
+.button,
+a.button {
+  background: var(--LightGreenBG) !important;
+  color: var(--OffWhite) !important;
+  border-top: var(--BorderOutset) !important;
+  border-right: var(--BorderOutset) !important;
+  border-bottom: var(--BorderOutsetBottomLeft) !important;
+  border-left: var(--BorderOutsetBottomLeft) !important;
+  border-radius: 0 !important;
+  font-family: var(--font-steam) !important;
+  font-weight: lighter !important;
+  opacity: 0.8 !important;
+}
+
+button:hover,
+.button:hover,
+a.button:hover {
+  background: var(--GreenBG) !important;
+  color: var(--OffWhite) !important;
+}
+
+.button.outline {
+  border-top: var(--BorderInset) !important;
+  border-right: var(--BorderInset) !important;
+  border-bottom: var(--BorderInsetBottomLeft) !important;
+  border-left: var(--BorderInsetBottomLeft) !important;
+  border-radius: 0 !important;
+  color: var(--OffWhite) !important;
+}
+
+/* Pagination (next/previous post) – square, consistent with Steam UI */
+.pagination .button,
+.pagination span.button {
+  border-radius: 0 !important;
+}
+
+.pagination__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pagination .button a {
+  padding: 10px 14px;
+  border-radius: 0 !important;
+}
+
+/* Footer */
+.footer {
+  color: var(--DimListText) !important;
+}
+
+.footer a {
+  color: var(--Maize) !important;
+}
+
+/* Post list */
+.posts .post-date,
+.posts .post-meta {
+  color: var(--DimListText) !important;
+}
+
+/* Theme toggle */
+.theme-toggler {
+  color: var(--OffWhite) !important;
+}
+
+/* Dark theme: reuse same palette (slightly darker emphasis) */
+[data-theme="dark"] body,
+@media (prefers-color-scheme: dark) body {
+  background-color: var(--DarkGreenBG) !important;
+  color: var(--OffWhite) !important;
+}
+
+[data-theme="dark"] .header,
+[data-theme="dark"] .menu,
+[data-theme="dark"] .content,
+@media (prefers-color-scheme: dark) .header,
+@media (prefers-color-scheme: dark) .menu,
+@media (prefers-color-scheme: dark) .content {
+  background: var(--DarkGreenBG) !important;
+  background-color: var(--DarkGreenBG) !important;
+}
+
+/* Focus / accessibility */
+.screen-reader-text:focus {
+  color: var(--Maize) !important;
+  box-shadow: 0 0 2px 2px var(--MaizeBG);
+}
+
+/* Tables */
+table,
+th,
+td {
+  border-color: var(--BorderDark) !important;
+}
+
+th,
+.post-content table thead tr {
+  background: var(--DarkGreenBG) !important;
+  color: var(--OffWhite) !important;
+}
+
+.post-content table tbody tr,
+.post-content table td {
+  background: var(--GreenBG) !important;
+  color: var(--OffWhite) !important;
+}
+
+/* ----- Single post page ----- */
+.post {
+  background-color: transparent !important;
+  color: var(--OffWhite) !important;
+}
+
+.post-excerpt {
+  color: var(--DimListText) !important;
+  font-style: italic;
+}
+
+.post-info,
+.post-info p,
+.post-info a {
+  color: var(--DimListText) !important;
+}
+
+.post-info a:hover {
+  color: var(--Maize) !important;
+  border-bottom-color: var(--Maize) !important;
+}
+
+.post-tags {
+  color: var(--DimListText) !important;
+}
+
+.post-tags a {
+  color: var(--Maize) !important;
+}
+
+.post-title a {
+  color: var(--Secondary) !important;
+}
+
+.post-title a:hover {
+  color: var(--Maize) !important;
+}
+
+/* Post list (archive) – dimmed text & borders */
+.post-year,
+.post-day {
+  color: var(--DimListText) !important;
+}
+
+.post-item {
+  border-bottom: 1px dashed var(--ShadeDark) !important;
+}
+
+.post-item-inner {
+  color: var(--OffWhite) !important;
+}
+
+.post-item-inner:hover {
+  color: var(--Maize) !important;
+}
+
+/* Pagination */
+.pagination__title-h {
+  background: var(--GreenBG) !important;
+  color: var(--DimListText) !important;
+  border: 1px solid var(--BorderDark) !important;
+}
+
+.pagination .button a,
+.pagination__buttons a {
+  color: var(--OffWhite) !important;
+}
+
+.pagination .button a:hover,
+.pagination__buttons a:hover {
+  color: var(--Maize) !important;
+}
+
+.pagination hr {
+  background: var(--BorderDark) !important;
+}
+
+/* Footer inner */
+.footer__inner,
+.footer__content {
+  color: var(--DimListText) !important;
+}
+
+.footer__content a {
+  color: var(--Maize) !important;
+}
+
+.footer__content > *:not(:last-child)::after {
+  color: var(--DimListText) !important;
+}
+
+/* Sharing buttons */
+.sharing-buttons {
+  font-family: var(--font-steam) !important;
+}
+
+.sharing-buttons .resp-sharing-button__link {
+  color: var(--Maize) !important;
+}
+
+.sharing-buttons .resp-sharing-button {
+  font-family: var(--font-steam) !important;
+}
+
+.sharing-buttons .resp-sharing-button__link:hover {
+  color: var(--OffWhite) !important;
+}
+
+/* Table of contents: title + square bullets */
+.toc-title {
+  color: var(--Secondary) !important;
+  font-family: var(--font-heading) !important;
+  opacity: 0.8 !important;
+}
+
+#toc ul,
+#TableOfContents ul {
+  list-style-type: square !important;
+  list-style-position: outside !important;
+}
+
+/* Figcaption */
+figcaption {
+  color: var(--DimListText) !important;
+  opacity: 0.9;
+}
+
+/* Tags in post-info (e.g. .tag) */
+.post-info .tag,
+span.tag {
+  color: var(--DimListText) !important;
+}
+
+.post-info .tag a,
+span.tag a {
+  color: var(--Maize) !important;
+}
+
+/* Code toolbar (Prism copy button etc.) */
+.code-toolbar .toolbar-item a {
+  background: var(--DarkGreenBG) !important;
+  color: var(--OffWhite) !important;
+  border: 1px solid var(--ShadeDark) !important;
+  font-family: var(--font-steam) !important;
+}
+
+.code-toolbar .toolbar-item a:hover {
+  background: var(--MaizeBG) !important;
+  color: var(--OffWhite) !important;
+}
+
+/* Code blocks and language labels – square (no radius) */
+.highlight,
+.highlight pre,
+.highlight code,
+pre[class*="language-"],
+code[class*="language-"],
+:not(pre) > code[class*="language-"],
+div.code-toolbar,
+div.code-toolbar > .toolbar > .toolbar-item > a,
+div.code-toolbar > .toolbar > .toolbar-item > button,
+div.code-toolbar > .toolbar > .toolbar-item > span {
+  border-radius: 0 !important;
+}
+
+.highlight {
+  background: var(--DarkGreenBG) !important;
+  border-top: var(--BorderInset) !important;
+  border-right: var(--BorderInset) !important;
+  border-left: var(--BorderInsetBottomLeft) !important;
+}
+
+.highlight pre {
+  margin: 0 !important;
+  padding: 10px 14px !important;
+}
+
+/* Form controls (inputs, textarea, select) – VGUI style */
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+select,
+textarea {
+  background: var(--DarkGreenBG) !important;
+  color: var(--OffWhite) !important;
+  border-top: var(--BorderInset) !important;
+  border-right: var(--BorderInset) !important;
+  border-bottom: var(--BorderInsetBottomLeft) !important;
+  border-left: var(--BorderInsetBottomLeft) !important;
+  font-family: var(--font-steam) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--DisabledText1) !important;
+}
+
+/* Menu trigger (mobile hamburger) */
+.menu-trigger {
+  color: var(--OffWhite) !important;
+}
+
+/* 404 page */
+.error-404,
+#spotlight.error-404 {
+  color: var(--OffWhite) !important;
+}
+
+.error-404 .img-404,
+.error-404 .img-404 svg {
+  color: var(--DimListText) !important;
+}
+
+.banner-404 h1 {
+  color: var(--Secondary) !important;
+  font-family: var(--font-heading) !important;
+}
+
+.banner-404 p {
+  color: var(--OffWhite) !important;
+}
+
+.btn-404 a {
+  color: var(--Maize) !important;
+}
+
+.btn-404 a:hover {
+  color: var(--OffWhite) !important;
+}
+
+/* Selection highlight */
+::selection {
+  background: var(--DarkSecondary) !important;
+  color: var(--OffWhite) !important;
+}
+
+/* Post cover image optional border */
+.post-cover img {
+  border: 1px solid var(--BorderDark) !important;
+}
+
+/* ========== Steam console modal (open with / ) ========== */
+.steam-console {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 40px;
+  box-sizing: border-box;
+}
+
+.steam-console[hidden] {
+  display: none !important;
+}
+
+body.steam-console-open {
+  overflow: hidden;
+}
+
+.steam-console__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+.steam-console__panel {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  min-height: 420px;
+  max-height: 85vh;
+  margin: 0 12px;
+  display: flex;
+  flex-direction: column;
+  background: var(--DarkGreenBG);
+  color: #fff;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border-top: 1px solid var(--ShadeLight);
+  border-right: 1px solid var(--ShadeLight);
+  border-bottom: 1px solid var(--ShadeDark);
+  border-left: 1px solid var(--ShadeDark);
+}
+
+.steam-console__titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  background: var(--GreenBG);
+  border-bottom: 1px solid var(--ShadeDark);
+  flex-shrink: 0;
+}
+
+.steam-console__title {
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.steam-console__close {
+  background: transparent;
+  border: none;
+  border-radius: 0 !important;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 6px;
+  margin: -4px -4px 0 0;
+}
+
+.steam-console__close:hover {
+  color: var(--Maize);
+}
+
+.steam-console__log {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 12px 14px;
+  min-height: 280px;
+  background: var(--DarkGreenBG);
+}
+
+.steam-console__line {
+  color: var(--DimListText);
+  word-break: break-word;
+}
+
+.steam-console__line--maize {
+  color: var(--Secondary);
+}
+
+.steam-console__input-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--GreenBG);
+  border-top: 1px solid var(--ShadeDark);
+  flex-shrink: 0;
+}
+
+.steam-console__input-slot {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.steam-console__input {
+  width: 100%;
+  min-width: 0;
+  height: 36px;
+  box-sizing: border-box;
+  background: var(--DarkGreenBG) !important;
+  color: #fff !important;
+  border: 1px solid var(--ShadeDark) !important;
+  padding: 0 12px !important;
+  font-family: Consolas, "Courier New", monospace !important;
+  font-size: 14px !important;
+  outline: none !important;
+  border-radius: 0 !important;
+}
+
+.steam-console__suggestions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  margin-top: 2px;
+  max-height: 220px;
+  overflow-y: auto;
+  background: var(--DarkGreenBG);
+  border: 1px solid var(--ShadeDark);
+  border-radius: 0;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.steam-console__suggestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: var(--OffWhite);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  border: none;
+  border-radius: 0;
+  text-align: left;
+  background: transparent;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.steam-console__suggestion:hover {
+  background: var(--GreenBG);
+  color: #fff;
+}
+
+.steam-console__suggestion--selected {
+  background: var(--MaizeBG);
+  color: #fff;
+  box-shadow: inset 0 0 0 1px var(--Secondary);
+}
+
+.steam-console__suggestion-title {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.steam-console__suggestion-slug {
+  flex-shrink: 0;
+  color: var(--DimListText);
+  font-size: 12px;
+}
+
+.steam-console__suggestion--selected .steam-console__suggestion-slug {
+  color: var(--ShadeLighter);
+}
+
+.steam-console__input::placeholder {
+  color: var(--DisabledText1) !important;
+}
+
+.steam-console__input:focus {
+  border-color: var(--Maize) !important;
+}
+
+.steam-console__submit {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 36px;
+  padding: 0 16px 0 14px;
+  background: var(--LightGreenBG) !important;
+  color: #fff !important;
+  border-top: 1px solid var(--ShadeLight) !important;
+  border-right: 1px solid var(--ShadeLight) !important;
+  border-bottom: 1px solid var(--ShadeDark) !important;
+  border-left: 1px solid var(--ShadeDark) !important;
+  border-radius: 0 !important;
+  font-family: var(--font-steam) !important;
+  font-size: 13px !important;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: left !important;
+  width: auto;
+}
+
+.steam-console__submit:hover {
+  background: var(--MaizeBG) !important;
+  color: #fff !important;
+}

@@ -1,0 +1,29 @@
+baseURL = 'https://localhost:1313/'
+languageCode = 'en-us'
+# Multiline title (ASCII art) using TOML triple-quoted string
+title = """
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⣤⣤⣴⣦⣤⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢀⣤⣾⣿⣿⣿⣿⠿⠿⠿⠿⣿⣿⣿⣿⣶⣤⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣠⣾⣿⣿⡿⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⢿⣿⣿⣶⡀⠀⠀⠀⠀
+⠀⠀⠀⣴⣿⣿⠟⠁⠀⠀⠀⣶⣶⣶⣶⡆⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣦⠀⠀⠀
+⠀⠀⣼⣿⣿⠋⠀⠀⠀⠀⠀⠛⠛⢻⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⣧⠀⠀
+⠀⢸⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⡇⠀
+⠀⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⠀
+⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀  mrise-uZG⠀⠀⠀⠀⠀⠀⠀⣹⣿⣿⠀
+⠀⣿⣿⣷⠀⠀⠀  ⠀ ⠀SSlk ⠀⠀2and⠀⠀⠀⠀⠀⠀⣿⣿⡿⠀
+⠀⢸⣿⣿⡆⠀⠀   ⠀z76B⠀⠀ ⠀0shineI⠀⠀⣰⣿⣿⠇⠀
+⠀⠀⢻⣿⣿⣄⠀  dLzO⠀⠀⠀⠀⠀  iAPP0P ⣰⣿⣿⡟⠀⠀
+⠀⠀⠀⠻⣿⣿⣧⣄⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀ saAPz⠀⠀⠀
+⠀⠀⠀ ⠀ztulnGF⠀⠀⠀⠀⠀ ⠀    5OP0dsa⠀⠀⠀
+⠀⠀⠀⠀⠀⠀GMRGh7SPkgAsOP04ZZDSd⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀iysuKMnFREEMANoy⠀⠀⠀⠀⠀⠀⠀⠀⠀
+"""
+theme = 'hello-friend-ng'
+
+[params]
+  # Custom CSS is loaded from assets/css/custom.css via layouts/partials/extra-head.html
+  customCSS = []
+
+  [params.Logo]
+  # Top-left: directory-style (ttkm.net is on the right)
+  logoText = "/home/"

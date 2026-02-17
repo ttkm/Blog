@@ -1,0 +1,119 @@
+{{ define "body" }}
+    <body class="{{ if .Site.Params.backgroundImage }} background-image" style="background-image: url('{{ .Site.Params.backgroundImage }}');" {{ else }}"{{ end }}>
+{{ end }}
+
+{{ define "main" }}
+    <div class="content-center">
+        <main>
+            <div>
+                {{ if .Site.Params.Portrait.Path }}
+                <img src="{{ .Site.Params.Portrait.Path }}" class="circle" alt="{{ .Site.Params.Portrait.Alt }}" style="max-width:{{ .Site.Params.Portrait.MaxWidth }}" />
+                {{ end }}
+
+                <div class="site-title-ascii" role="img" aria-label="Site title">
+                    {{ range $line := split (trim .Site.Title "\n") "\n" }}
+                    <div class="ascii-line">{{ range split $line "" }}<span class="ascii-char">{{ . | safeHTML }}</span>{{ end }}</div>
+                    {{ end }}
+                </div>
+
+                {{ partial "subtitle.html" . }}
+
+                {{- with .Site.Params.social }}
+                    <div>
+                        {{ partial "social-icons.html" . }}
+                    </div>
+                {{- end }}
+            </div>
+        </main>
+    </div>
+    <script>
+    (function() {
+      var container = document.querySelector('.site-title-ascii');
+      if (!container) return;
+      var chars = container.querySelectorAll('.ascii-char');
+      var delay = 65;
+      var duration = 500;
+
+      // Find spans that spell "rise and shine mr freeman" – match letters only (skip spaces), case-insensitive
+      var phrase = 'rise and shine mr freeman';
+      var lettersOnly = phrase.replace(/\s/g, '');
+      var phraseSpans = [];
+      var j = 0;
+      for (var i = 0; i < chars.length && j < lettersOnly.length; i++) {
+        var ch = chars[i].textContent;
+        if (ch.length === 1 && ch.toLowerCase() === lettersOnly[j].toLowerCase()) {
+          phraseSpans.push(chars[i]);
+          j++;
+        }
+      }
+      phraseSpans.forEach(function(s) { s.classList.add('msg-letter'); });
+      var highlightTimeout = null;
+
+      function showMessageHighlight() {
+        phraseSpans.forEach(function(s) {
+          s.classList.remove('msg-fade-out');
+          s.classList.add('msg-highlight');
+        });
+        if (highlightTimeout) clearTimeout(highlightTimeout);
+        highlightTimeout = setTimeout(function() {
+          phraseSpans.forEach(function(s) {
+            s.classList.add('msg-fade-out');
+          });
+          setTimeout(function() {
+            phraseSpans.forEach(function(s) {
+              s.classList.remove('msg-highlight', 'msg-fade-out');
+            });
+            highlightTimeout = null;
+          }, 550);
+        }, 2500);
+      }
+
+      chars.forEach(function(span) {
+        span.addEventListener('mouseenter', showMessageHighlight);
+      });
+
+      function getPrev(span) {
+        if (span.previousElementSibling) return span.previousElementSibling;
+        var line = span.parentElement.previousElementSibling;
+        return line ? line.lastElementChild : null;
+      }
+      function getNext(span) {
+        if (span.nextElementSibling) return span.nextElementSibling;
+        var line = span.parentElement.nextElementSibling;
+        return line ? line.firstElementChild : null;
+      }
+      function getAbove(span) {
+        var line = span.parentElement;
+        var idx = Array.prototype.indexOf.call(line.children, span);
+        var prevLine = line.previousElementSibling;
+        if (!prevLine) return null;
+        return prevLine.children[idx] || null;
+      }
+      function getBelow(span) {
+        var line = span.parentElement;
+        var idx = Array.prototype.indexOf.call(line.children, span);
+        var nextLine = line.nextElementSibling;
+        if (!nextLine) return null;
+        return nextLine.children[idx] || null;
+      }
+
+      function triggerFlip(el) {
+        if (!el || el.classList.contains('flip')) return;
+        el.classList.add('flip');
+        setTimeout(function() {
+          el.classList.remove('flip');
+        }, duration);
+        var neighbors = [getPrev(el), getNext(el), getAbove(el), getBelow(el)];
+        setTimeout(function() {
+          neighbors.forEach(function(n) { triggerFlip(n); });
+        }, delay);
+      }
+
+      chars.forEach(function(span) {
+        span.addEventListener('mouseenter', function() {
+          triggerFlip(span);
+        });
+      });
+    })();
+    </script>
+{{ end }}
