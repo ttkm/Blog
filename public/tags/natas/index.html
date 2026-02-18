@@ -190,7 +190,7 @@
         
 <script type="application/json" id="steam-console-posts">
 
-[{"title":"\"How to use the console (for funsies)\"","url":"\"/posts/how-to-use-the-console/\"","slug":"\"\""},{"title":"\"Natas walkthrough\"","url":"\"/posts/natas-walkthrough/\"","slug":"\"\""},{"title":"\"Hello again — second post\"","url":"\"/posts/hello-again/\"","slug":"\"\""},{"title":"\"Hello — sample post\"","url":"\"/posts/hello/\"","slug":"\"\""}]
+[{"title":"\"How to use the console (for funsies)\"","url":"\"/posts/how-to-use-the-console/\"","slug":"\"\""},{"title":"\"Natas walkthrough\"","url":"\"/posts/natas-walkthrough/\"","slug":"\"\""}]
 </script>
 <div id="steam-console" class="steam-console" role="dialog" aria-label="Console" hidden>
   <div class="steam-console__backdrop" data-close></div>
@@ -332,6 +332,9 @@
     logEl.scrollTop = logEl.scrollHeight;
     hideSuggestions();
     inputEl.value = '';
+    if (typeof console !== 'undefined' && console.log) {
+      console.log('[Console] Navigated to:', post.title, post.url);
+    }
     window.location.href = normalizeUrl(post.url);
   }
 
@@ -361,6 +364,9 @@
       line.textContent = '] Opening: /posts/' + bySlug + '/';
       logEl.appendChild(line);
       logEl.scrollTop = logEl.scrollHeight;
+      if (typeof console !== 'undefined' && console.log) {
+        console.log('[Console] Navigated to: /posts/' + bySlug + '/');
+      }
       window.location.href = normalizeUrl('/posts/' + bySlug + '/');
     } else {
       var noMatch = document.createElement('div');

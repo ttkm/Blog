@@ -233,47 +233,6 @@
                     </ul>
                 </div>
             
-                <div class="posts-group">
-                    <div class="post-year">0001</div>
-
-                    <ul class="posts-list">
-                        
-                            <li class="post-item">
-                                <a href="http://localhost:1313/tags/sample/" class="post-item-inner">
-                                    <span class="post-title">Sample</span>
-                                    <span class="post-day">
-                                        
-                                            Jan 1
-                                        
-                                    </span>
-                                </a>
-                            </li>
-                        
-                            <li class="post-item">
-                                <a href="http://localhost:1313/tags/hello/" class="post-item-inner">
-                                    <span class="post-title">Hello</span>
-                                    <span class="post-day">
-                                        
-                                            Jan 1
-                                        
-                                    </span>
-                                </a>
-                            </li>
-                        
-                            <li class="post-item">
-                                <a href="http://localhost:1313/tags/demo/" class="post-item-inner">
-                                    <span class="post-title">Demo</span>
-                                    <span class="post-day">
-                                        
-                                            Jan 1
-                                        
-                                    </span>
-                                </a>
-                            </li>
-                        
-                    </ul>
-                </div>
-            
         <div class="pagination">
     <div class="pagination__buttons">
         
@@ -439,6 +398,9 @@
     logEl.scrollTop = logEl.scrollHeight;
     hideSuggestions();
     inputEl.value = '';
+    if (typeof console !== 'undefined' && console.log) {
+      console.log('[Console] Navigated to:', post.title, post.url);
+    }
     window.location.href = normalizeUrl(post.url);
   }
 
@@ -468,6 +430,9 @@
       line.textContent = '] Opening: /posts/' + bySlug + '/';
       logEl.appendChild(line);
       logEl.scrollTop = logEl.scrollHeight;
+      if (typeof console !== 'undefined' && console.log) {
+        console.log('[Console] Navigated to: /posts/' + bySlug + '/');
+      }
       window.location.href = normalizeUrl('/posts/' + bySlug + '/');
     } else {
       var noMatch = document.createElement('div');

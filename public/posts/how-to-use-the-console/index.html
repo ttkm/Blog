@@ -109,7 +109,7 @@ Open it Press / (slash) on your keyboard from any page, or Click search in the t
     <div class="logo">
         
             <span class="logo__mark">></span>
-            <span class="logo__text ">/posts/how-to-use-the-console/</span>
+            <span class="logo__text "><span class="logo__path-full">/posts/how-to-use-the-console/</span><span class="logo__path-short">/home/posts/</span></span>
             <span class="logo__cursor" style=
                   "
                    
@@ -310,6 +310,32 @@ Open it Press / (slash) on your keyboard from any page, or Click search in the t
   var selectedIndex = 0;
   var currentMatches = [];
 
+  var LOG_STORAGE_KEY = 'steam-console-log';
+  var MAX_LOG_ENTRIES = 50;
+
+  function getStoredLog() {
+    try {
+      var raw = sessionStorage.getItem(LOG_STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+  }
+  function appendToStoredLog(text) {
+    var log = getStoredLog();
+    log.push(text);
+    if (log.length > MAX_LOG_ENTRIES) log = log.slice(-MAX_LOG_ENTRIES);
+    try { sessionStorage.setItem(LOG_STORAGE_KEY, JSON.stringify(log)); } catch (e) {}
+  }
+
+  function restoreStoredLog() {
+    var log = getStoredLog();
+    log.forEach(function(text) {
+      var line = document.createElement('div');
+      line.className = 'steam-console__line';
+      line.textContent = text;
+      logEl.appendChild(line);
+    });
+  }
+
   function open() {
     consoleEl.removeAttribute('hidden');
     document.body.classList.add('steam-console-open');
@@ -399,13 +425,18 @@ Open it Press / (slash) on your keyboard from any page, or Click search in the t
   }
 
   function goTo(post) {
+    var msg = '] Opening: ' + post.title;
     var line = document.createElement('div');
     line.className = 'steam-console__line';
-    line.textContent = '] Opening: ' + post.title;
+    line.textContent = msg;
     logEl.appendChild(line);
     logEl.scrollTop = logEl.scrollHeight;
+    appendToStoredLog(msg);
     hideSuggestions();
     inputEl.value = '';
+    if (typeof console !== 'undefined' && console.log) {
+      console.log('[Console] Navigated to:', post.title, post.url);
+    }
     window.location.href = normalizeUrl(post.url);
   }
 
@@ -430,18 +461,25 @@ Open it Press / (slash) on your keyboard from any page, or Click search in the t
     }
     var bySlug = slugify(q);
     if (bySlug) {
+      var msg = '] Opening: /posts/' + bySlug + '/';
       var line = document.createElement('div');
       line.className = 'steam-console__line';
-      line.textContent = '] Opening: /posts/' + bySlug + '/';
+      line.textContent = msg;
       logEl.appendChild(line);
       logEl.scrollTop = logEl.scrollHeight;
+      appendToStoredLog(msg);
+      if (typeof console !== 'undefined' && console.log) {
+        console.log('[Console] Navigated to: /posts/' + bySlug + '/');
+      }
       window.location.href = normalizeUrl('/posts/' + bySlug + '/');
     } else {
+      var noMatchMsg = '] No post found. Type to search by title or slug.';
       var noMatch = document.createElement('div');
       noMatch.className = 'steam-console__line';
-      noMatch.textContent = '] No post found. Type to search by title or slug.';
+      noMatch.textContent = noMatchMsg;
       logEl.appendChild(noMatch);
       logEl.scrollTop = logEl.scrollHeight;
+      appendToStoredLog(noMatchMsg);
     }
     inputEl.value = '';
     hideSuggestions();
@@ -524,6 +562,8 @@ Open it Press / (slash) on your keyboard from any page, or Click search in the t
 
   var searchLink = document.getElementById('header-search-link');
   if (searchLink) searchLink.addEventListener('click', function(e) { e.preventDefault(); open(); });
+
+  restoreStoredLog();
 })();
 </script>
 

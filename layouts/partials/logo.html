@@ -10,7 +10,11 @@
                 {{- else -}}
                     {{- $path := .RelPermalink -}}
                     {{- if not (hasSuffix $path "/") -}}{{- $path = printf "%s/" $path -}}{{- end -}}
-                    {{- $path -}}
+                    {{- if and (eq .Section "posts") .IsPage -}}
+                        <span class="logo__path-full">{{ $path }}</span><span class="logo__path-short">/home/posts/</span>
+                    {{- else -}}
+                        {{ $path }}
+                    {{- end -}}
                 {{- end -}}
             </span>
             <span class="logo__cursor" style=

@@ -55,8 +55,6 @@
 
 
   <meta itemprop="name" content="Posts">
-  <meta itemprop="datePublished" content="2026-02-16T16:00:00-06:00">
-  <meta itemprop="dateModified" content="2026-02-16T16:00:00-06:00">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Posts">
@@ -247,6 +245,32 @@
   var selectedIndex = 0;
   var currentMatches = [];
 
+  var LOG_STORAGE_KEY = 'steam-console-log';
+  var MAX_LOG_ENTRIES = 50;
+
+  function getStoredLog() {
+    try {
+      var raw = sessionStorage.getItem(LOG_STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+  }
+  function appendToStoredLog(text) {
+    var log = getStoredLog();
+    log.push(text);
+    if (log.length > MAX_LOG_ENTRIES) log = log.slice(-MAX_LOG_ENTRIES);
+    try { sessionStorage.setItem(LOG_STORAGE_KEY, JSON.stringify(log)); } catch (e) {}
+  }
+
+  function restoreStoredLog() {
+    var log = getStoredLog();
+    log.forEach(function(text) {
+      var line = document.createElement('div');
+      line.className = 'steam-console__line';
+      line.textContent = text;
+      logEl.appendChild(line);
+    });
+  }
+
   function open() {
     consoleEl.removeAttribute('hidden');
     document.body.classList.add('steam-console-open');
@@ -336,13 +360,18 @@
   }
 
   function goTo(post) {
+    var msg = '] Opening: ' + post.title;
     var line = document.createElement('div');
     line.className = 'steam-console__line';
-    line.textContent = '] Opening: ' + post.title;
+    line.textContent = msg;
     logEl.appendChild(line);
     logEl.scrollTop = logEl.scrollHeight;
+    appendToStoredLog(msg);
     hideSuggestions();
     inputEl.value = '';
+    if (typeof console !== 'undefined' && console.log) {
+      console.log('[Console] Navigated to:', post.title, post.url);
+    }
     window.location.href = normalizeUrl(post.url);
   }
 
@@ -367,18 +396,25 @@
     }
     var bySlug = slugify(q);
     if (bySlug) {
+      var msg = '] Opening: /posts/' + bySlug + '/';
       var line = document.createElement('div');
       line.className = 'steam-console__line';
-      line.textContent = '] Opening: /posts/' + bySlug + '/';
+      line.textContent = msg;
       logEl.appendChild(line);
       logEl.scrollTop = logEl.scrollHeight;
+      appendToStoredLog(msg);
+      if (typeof console !== 'undefined' && console.log) {
+        console.log('[Console] Navigated to: /posts/' + bySlug + '/');
+      }
       window.location.href = normalizeUrl('/posts/' + bySlug + '/');
     } else {
+      var noMatchMsg = '] No post found. Type to search by title or slug.';
       var noMatch = document.createElement('div');
       noMatch.className = 'steam-console__line';
-      noMatch.textContent = '] No post found. Type to search by title or slug.';
+      noMatch.textContent = noMatchMsg;
       logEl.appendChild(noMatch);
       logEl.scrollTop = logEl.scrollHeight;
+      appendToStoredLog(noMatchMsg);
     }
     inputEl.value = '';
     hideSuggestions();
@@ -461,6 +497,8 @@
 
   var searchLink = document.getElementById('header-search-link');
   if (searchLink) searchLink.addEventListener('click', function(e) { e.preventDefault(); open(); });
+
+  restoreStoredLog();
 })();
 </script>
 
