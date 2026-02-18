@@ -159,8 +159,9 @@ body {
   display: none;
 }
 
-/* Phone: header and reading layout – prevent glitching, better fit */
-@media (max-width: 768px) {
+/* Phone: header and reading layout – prevent glitching, better fit.
+   Two media queries so Safari iOS applies (Safari can ignore max-width alone). */
+@media (max-width: 768px), (max-device-width: 768px) and (-webkit-min-device-pixel-ratio: 1) {
   .logo__path-full {
     display: none !important;
   }
@@ -172,11 +173,29 @@ body {
     padding: 10px 12px !important;
     min-height: auto !important;
     overflow: hidden !important;
+    -webkit-overflow-scrolling: touch;
   }
   .header__inner {
+    display: -webkit-flex !important;
+    display: flex !important;
+    -webkit-align-items: center !important;
+    align-items: center !important;
+    -webkit-justify-content: space-between !important;
+    justify-content: space-between !important;
     width: 100% !important;
+    max-width: 100% !important;
     min-width: 0 !important;
     gap: 8px !important;
+    box-sizing: border-box !important;
+  }
+  .logo {
+    display: -webkit-flex !important;
+    display: flex !important;
+    -webkit-align-items: center !important;
+    align-items: center !important;
+    min-width: 0 !important;
+    max-width: 50% !important;
+    overflow: hidden !important;
   }
   .logo,
   .logo__text {
@@ -186,13 +205,19 @@ body {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
+    -webkit-flex-shrink: 1 !important;
+    flex-shrink: 1 !important;
   }
   .logo__mark {
+    -webkit-flex-shrink: 0 !important;
     flex-shrink: 0 !important;
   }
   .header__right {
     min-width: 0 !important;
+    -webkit-flex-shrink: 0 !important;
     flex-shrink: 0 !important;
+    display: -webkit-flex !important;
+    display: flex !important;
   }
   .header__top-right {
     align-items: flex-end !important;
@@ -228,8 +253,20 @@ body {
   }
 }
 
-/* Smaller phones: even tighter header */
-@media (max-width: 480px) {
+/* Prevent Safari from horizontal scroll / layout shift on small screens */
+@media (max-width: 768px), (max-device-width: 768px) and (-webkit-min-device-pixel-ratio: 1) {
+  html, body {
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .header {
+    position: relative;
+    z-index: 100;
+  }
+}
+
+/* Smaller phones: even tighter header (Safari-friendly query) */
+@media (max-width: 480px), (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 1) {
   .header {
     padding: 8px 10px !important;
   }
