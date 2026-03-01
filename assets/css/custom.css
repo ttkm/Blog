@@ -614,10 +614,11 @@ a.button:hover {
   margin-top: 14px;
   margin-bottom: 4px;
   padding: 4px 0;
-  font-size: 1rem;
+  font-size: 2.4rem;
   font-family: var(--font-heading);
   color: var(--Secondary);
-  border-bottom: 1px solid var(--ShadeDark);
+  border-bottom: 4px solid var(--ShadeDark);
+  width: 100%
 }
 
 .cs-archive-year-anchor:first-child .cs-archive-year {
@@ -830,7 +831,7 @@ th,
 }
 
 .post-item {
-  border-bottom: 1px dashed var(--ShadeDark) !important;
+  border-bottom: 2px dashed var(--ShadeDark) !important;
 }
 
 .post-item-inner {
