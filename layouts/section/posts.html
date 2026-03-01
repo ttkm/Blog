@@ -1,0 +1,143 @@
+{{ define "main" }}
+    <div class="content">
+        <main class="posts">
+            <h1>{{ .Title }}</h1>
+
+            {{ if .Content }}
+                <div class="content">{{ .Content }}</div>
+            {{ end }}
+
+            {{/* Root posts page: Steam-style category boxes from section order (weight) */}}
+            {{ if eq .RelPermalink "/posts/" }}
+                <ul class="posts-list category-list">
+                    {{ range .Sections.ByWeight }}
+                        <li class="post-item category-list__item">
+                            <a href="{{ .Permalink }}" class="post-item-inner">
+                                <span class="post-title category-list__title">{{ .Title | lower }}</span>
+                                <span class="post-day category-list__meta">
+                                    {{ if eq .RelPermalink "/posts/cs-archive/" }}
+                                        {{ $vcount := len (index site.Data "cs-archive") }}
+                                        {{ $vcount }} video{{ if ne $vcount 1 }}s{{ end }}
+                                    {{ else }}
+                                        {{ len .Pages }} post{{ if gt (len .Pages) 1 }}s{{ end }}
+                                    {{ end }}
+                                </span>
+                            </a>
+                            <span class="category-list__desc">{{ .Summary | plainify }}</span>
+                        </li>
+                    {{ end }}
+                </ul>
+
+            {{/* Subsections: list posts oldest first (e.g. natas level 0 → 4) */}}
+            {{ else if .Pages }}
+                {{ range .Pages.ByDate.GroupByDate "2006" }}
+                    <div class="posts-group">
+                        <div class="post-year">{{ .Key }}</div>
+                        <ul class="posts-list">
+                            {{ range .Pages }}
+                                <li class="post-item">
+                                    <a href="{{ .Permalink }}" class="post-item-inner">
+                                        <span class="post-title">{{ .Title }}</span>
+                                        <span class="post-day">{{ time.Format "Jan 2" .Date }}</span>
+                                    </a>
+                                </li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                {{ end }}
+
+            {{/* cs-archive: video rows with thumbnail + hover-to-preview (from data/cs-archive.json, generated from cs-archive-videos.csv) */}}
+            {{ else if eq .RelPermalink "/posts/cs-archive/" }}
+                {{ $videos := index site.Data "cs-archive" }}
+                {{ if $videos }}
+                    {{/* Build unique sorted years for jump nav */}}
+                    {{ $yearList := slice }}
+                    {{ range $videos }}
+                        {{ $y := "0000" }}
+                        {{ if .publishedAt }}{{ $y = time.Format "2006" (.publishedAt | time) }}{{ end }}
+                        {{ if and (ne $y "0000") (not (in $yearList $y)) }}{{ $yearList = $yearList | append $y }}{{ end }}
+                    {{ end }}
+                    {{ $years := sort $yearList }}
+                    {{/* Year jump – same style as post Table of Contents */}}
+                    <aside class="cs-archive-years-toc" aria-label="Jump to year">
+                        <div class="toc-title">Table of Contents</div>
+                        <nav id="TableOfContents-cs-archive">
+                            <ul>
+                                {{ range $years }}
+                                    {{ if ne . "0000" }}
+                                        <li><a href="#year-{{ . }}">{{ . }}</a></li>
+                                    {{ end }}
+                                {{ end }}
+                            </ul>
+                        </nav>
+                    </aside>
+                        {{/* Single preview iframe: shown on row hover, plays muted */}}
+                        <div class="cs-archive-preview" id="cs-archive-preview" aria-hidden="true">
+                            <div class="cs-archive-preview__inner">
+                                <iframe id="cs-archive-preview-iframe" title="Video preview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        {{ $scratch := .Scratch }}
+                        {{ $scratch.Set "lastYear" "" }}
+                        <ul class="posts-list cs-archive-rows">
+                            {{ range $videos }}
+                                {{ $year := "0000" }}
+                                {{ if .publishedAt }}{{ $year = time.Format "2006" (.publishedAt | time) }}{{ end }}
+                                {{ if ne $year ($scratch.Get "lastYear") }}
+                                    {{ $scratch.Set "lastYear" $year }}
+                                    <li class="cs-archive-year-anchor" id="year-{{ $year }}"><span class="post-year cs-archive-year">{{ $year }}</span></li>
+                                {{ end }}
+                                {{ $dateFormatted := "—" }}
+                                {{ if .publishedAt }}
+                                    {{ $dateFormatted = time.Format "Jan 2, 2006" (.publishedAt | time) }}
+                                {{ end }}
+                                <li class="post-item cs-archive-item" data-video-id="{{ .videoId }}" data-video-url="{{ .videoUrl }}">
+                                    <a href="{{ .videoUrl }}" class="post-item-inner cs-archive-item-inner" target="_blank" rel="noopener noreferrer">
+                                        <span class="cs-archive-thumb">
+                                            <img src="https://img.youtube.com/vi/{{ .videoId }}/hqdefault.jpg" alt="" width="160" height="90" loading="lazy">
+                                        </span>
+                                        <span class="cs-archive-info">
+                                            <span class="post-title cs-archive-title">{{ .title }}</span>
+                                            <span class="post-day cs-archive-foundation">{{ $dateFormatted }}</span>
+                                        </span>
+                                    </a>
+                                </li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                    <script>
+(function(){
+ var root = document.getElementById('cs-archive-root');
+ var preview = document.getElementById('cs-archive-preview');
+ var iframe = document.getElementById('cs-archive-preview-iframe');
+ if (!root || !preview || !iframe) return;
+ var hideTimer;
+ root.addEventListener('mouseenter', function(e) {
+   var row = e.target.closest('.cs-archive-item');
+   if (!row) return;
+   var id = row.getAttribute('data-video-id');
+   if (!id) return;
+   clearTimeout(hideTimer);
+   iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&mute=1';
+   preview.classList.add('cs-archive-preview--visible');
+ }, true);
+ root.addEventListener('mouseleave', function(e) {
+   if (e.relatedTarget && root.contains(e.relatedTarget)) return;
+   hideTimer = setTimeout(function() {
+     preview.classList.remove('cs-archive-preview--visible');
+     iframe.src = '';
+   }, 300);
+ }, true);
+})();
+                    </script>
+                {{ else }}
+                    <p style="color:var(--DimListText)">No videos in the archive yet. Run <code>python scripts/csv-to-archive-json.py</code> from the project root to generate <code>data/cs-archive.json</code> from <code>cs-archive-videos.csv</code>.</p>
+                {{ end }}
+
+            {{ else }}
+                <p style="color:var(--DimListText)">No posts yet.</p>
+            {{ end }}
+
+        </main>
+    </div>
+{{ end }}

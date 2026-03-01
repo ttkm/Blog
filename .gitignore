@@ -1,0 +1,7 @@
+# Hugo build output
+.cache/
+node_modules/
+static/css/
+public/
+preview/
+resources/_gen/

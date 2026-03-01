@@ -515,6 +515,229 @@ a.button:hover {
   color: var(--DimListText) !important;
 }
 
+/* Posts section categories (/posts) – Old Steam-style square containers */
+.category-list {
+  list-style: none;
+  margin: 18px 0 0 0;
+  padding: 0;
+}
+
+.category-list__item {
+  margin: 0 0px 25px 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.category-list__item .post-item-inner {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  min-width: 190px;
+  background: var(--DarkGreenBG);
+  border-top: var(--BorderOutset);
+  border-right: var(--DarkGreenBG);
+  border-bottom: var(--BorderOutsetBottomLeft);
+  border-left: var(--BorderOutset);
+  text-decoration: none !important;
+}
+
+.category-list__item .post-item-inner:hover {
+  background: var(--GreenBG);
+}
+
+.category-list__title {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-family: var(--font-heading);
+  color: var(--OffWhite);
+}
+
+.category-list__desc {
+  flex: 1;
+  min-width: 0;
+  font-size: 1rem;
+  color: var(--DimListText);
+  line-height: 1.3;
+}
+
+.category-list__meta {
+  font-size: 0.8rem;
+  color: var(--DimListText);
+}
+
+/* ========== cs-archive: video rows with thumbnail + hover preview (Steam-style) ========== */
+.cs-archive-list {
+  position: relative;
+  margin-top: 12px;
+}
+
+/* Year jump – same look as post Table of Contents (no sidebar/pills) */
+.cs-archive-years-toc .toc-title {
+  margin-bottom: 0.5em;
+}
+
+.cs-archive-years-toc ul,
+#TableOfContents-cs-archive ul {
+  list-style-type: square !important;
+  list-style-position: outside !important;
+  margin: 0 0 1em 0;
+  padding-left: 1.5em;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.cs-archive-years-toc a,
+#TableOfContents-cs-archive a {
+  color: var(--Maize) !important;
+  text-decoration: none !important;
+}
+
+.cs-archive-years-toc a:hover,
+#TableOfContents-cs-archive a:hover {
+  color: var(--OffWhite) !important;
+}
+
+/* Year section header in list (anchor target) */
+.cs-archive-year-anchor {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: none !important;
+}
+
+.cs-archive-year-anchor .cs-archive-year {
+  display: block;
+  margin-top: 14px;
+  margin-bottom: 4px;
+  padding: 4px 0;
+  font-size: 1rem;
+  font-family: var(--font-heading);
+  color: var(--Secondary);
+  border-bottom: 1px solid var(--ShadeDark);
+}
+
+.cs-archive-year-anchor:first-child .cs-archive-year {
+  margin-top: 0;
+}
+
+.cs-archive-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cs-archive-item {
+  margin: 0;
+  border-bottom: 1px dashed var(--ShadeDark) !important;
+}
+
+.cs-archive-item:last-child {
+  border-bottom: none !important;
+}
+
+.cs-archive-item-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 12px;
+  text-decoration: none !important;
+  color: var(--OffWhite) !important;
+  background: transparent;
+  border-radius: 0;
+  min-height: 58px;
+  box-sizing: border-box;
+}
+
+.cs-archive-item-inner:hover {
+  background: var(--DarkGreenBG) !important;
+  color: var(--Maize) !important;
+}
+
+.cs-archive-thumb {
+  flex-shrink: 0;
+  width: 160px;
+  height: 90px;
+  background: var(--DarkGreenBG);
+  border-top: var(--BorderInset);
+  border-right: var(--BorderInset);
+  border-bottom: var(--BorderInsetBottomLeft);
+  border-left: var(--BorderInsetBottomLeft);
+  overflow: hidden;
+}
+
+.cs-archive-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+.cs-archive-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cs-archive-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cs-archive-foundation {
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  color: var(--DimListText) !important;
+}
+
+/* Hover preview: single iframe, fixed bottom-right, Steam panel style */
+.cs-archive-preview {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  width: 320px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.cs-archive-preview--visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.cs-archive-preview__inner {
+  background: var(--DarkGreenBG);
+  border-top: var(--BorderOutset);
+  border-right: var(--BorderOutset);
+  border-bottom: var(--BorderOutsetBottomLeft);
+  border-left: var(--BorderOutsetBottomLeft);
+  padding: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.cs-archive-preview__inner iframe {
+  display: block;
+  width: 100%;
+  height: 180px;
+  border: none;
+  vertical-align: middle;
+}
+
 /* Theme toggle */
 .theme-toggler {
   color: var(--OffWhite) !important;

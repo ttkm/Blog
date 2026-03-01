@@ -1,0 +1,33 @@
+{{ define "main" }}
+    <div class="content">
+        <main class="posts">
+            <h1>{{ .Title }}</h1>
+
+            {{ if .Content }}
+                <div class="content">{{ .Content }}</div>
+            {{ end }}
+
+            {{ if .Pages }}
+                {{ range .Pages.GroupByDate "2006" }}
+                    <div class="posts-group">
+                        <div class="post-year">{{ .Key }}</div>
+                        <ul class="posts-list">
+                            {{ range .Pages }}
+                                <li class="post-item">
+                                    <a href="{{ .Permalink }}" class="post-item-inner">
+                                        <span class="post-title">{{ .Title }}</span>
+                                        <span class="post-day">{{ time.Format "Jan 2" .Date }}</span>
+                                    </a>
+                                </li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                {{ end }}
+            {{ else }}
+                <p style="color:var(--DimListText)">No posts yet.</p>
+            {{ end }}
+
+            {{ partial "pagination-list.html" . }}
+        </main>
+    </div>
+{{ end }}

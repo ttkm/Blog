@@ -1,0 +1,33 @@
+{{ define "main" }}
+    <div class="content">
+        <main class="posts">
+            <h1>{{ .Title }}</h1>
+
+            {{ if .Content }}
+                <div class="content">{{ .Content }}</div>
+            {{ end }}
+
+            {{ $videos := index site.Data "cs-archive" }}
+            {{ if $videos }}
+                <div class="posts-group cs-archive-list">
+                    <ul class="posts-list">
+                        {{ range $videos }}
+                            <li class="post-item cs-archive-item">
+                                <a href="{{ .videoUrl }}" class="post-item-inner" target="_blank" rel="noopener noreferrer">
+                                    <span class="post-title">{{ .title }}</span>
+                                    {{ if .publishedAt }}
+                                        <span class="post-day">{{ time.Format "Jan 2, 2006" (.publishedAt | time) }}</span>
+                                    {{ else }}
+                                        <span class="post-day">—</span>
+                                    {{ end }}
+                                </a>
+                            </li>
+                        {{ end }}
+                    </ul>
+                </div>
+            {{ else }}
+                <p style="color:var(--DimListText)">No videos in the archive yet.</p>
+            {{ end }}
+        </main>
+    </div>
+{{ end }}
