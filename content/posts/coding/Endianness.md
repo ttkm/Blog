@@ -2,13 +2,16 @@
 title: "Endianness"
 date: 2026-03-21T17:55:42-05:00
 draft: false
-toc: false
+toc: true
 images:
 tags:
   - c
   - endianness
   - memory
+  - pwnable.kr
 ---
+
+> **Source:** [#pwnable.kr](https://pwnable.kr/) — walkthrough notes from their **`collision`** challenge. You don’t need an account or to follow along to read this; it’s just context for where the problem came from.
 
 This post will get you familiar with endianness, memory layout, and integer constraints.
 
