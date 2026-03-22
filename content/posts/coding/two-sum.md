@@ -2,16 +2,18 @@
 title: "Two Sum"
 date: 2026-03-03T14:20:47-06:00
 draft: false
-toc: false
+toc: true
 images:
 tags:
-  - untagged
+  - cpp
+  - algorithm
+  - hash
 ---
 
-Today we are given a problem "Two Sum".
+Today we’ll walk through a classic problem titled "Two Sum."
+The problem is defined as follows:
 
-The question states:
-
+---
 > Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.
 >
 > You may assume that each input would have exactly one solution, and you may not use the same element twice.
