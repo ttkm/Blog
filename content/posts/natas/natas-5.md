@@ -1,5 +1,5 @@
 ---
-title: "Natas Level 5"
+title: "Natas 5 - Cookie Bypass"
 date: 2026-04-05T13:58:07-05:00
 draft: false
 toc: false

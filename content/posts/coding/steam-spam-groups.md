@@ -1,5 +1,5 @@
 ---
-title: "2016 Steam Spam Groups: A Deep Dive"
+title: "Steam Unusual Spam Groups"
 date: 2026-02-23T10:30:00-06:00
 draft: false
 toc: true
@@ -7,7 +7,6 @@ slug: "steam-spam-groups-2016"
 tags:
   - security
   - steam
-  - spam
   - research
 ---
 

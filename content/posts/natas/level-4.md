@@ -1,5 +1,5 @@
 ---
-title: "Natas Level 4"
+title: "Natas 4 - Referer Spoofing"
 date: 2026-02-16T15:20:00-06:00
 draft: false
 tags:

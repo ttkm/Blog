@@ -1,5 +1,5 @@
 ---
-title: "Natas Level 2"
+title: "Natas 2 - Directory Listing"
 date: 2026-02-16T15:10:00-06:00
 draft: false
 tags:

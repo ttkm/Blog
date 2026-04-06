@@ -1,5 +1,5 @@
 ---
-title: "Natas Level 6"
+title: "Natas 6 - Source Disclosure"
 date: 2026-04-05T14:43:32-05:00
 draft: false
 toc: false

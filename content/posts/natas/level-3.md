@@ -1,5 +1,5 @@
 ---
-title: "Natas Level 3"
+title: "Natas 3 - Mr. robots.txt"
 date: 2026-02-16T15:15:00-06:00
 draft: false
 tags:

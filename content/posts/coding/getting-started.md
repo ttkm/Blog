@@ -17,10 +17,10 @@ This post is for someone who's never coded before. We're gonna go from zero what
 
 ## What you need
 
-- Python installed on your computer ([python.org](https://www.python.org/downloads/) — get the latest 3.x).
+- Python installed on your computer **([python.org](https://www.python.org/downloads/)** — get the latest 3.x).
 - A way to run code: either a simple text file saved as `something.py` that you run from the terminal, or an editor like VS Code / PyCharm.
 
-If you prefer to simply follow along without installing anything, that is completely fine. You can run Python directly in your browser using an online interpreter such as [online-python.com](https://www.online-python.com/) It allows you to write and execute Python code instantly without any setup.
+If you prefer to simply follow along without installing anything, that is completely fine. You can run Python directly in your browser using an online interpreter such as **[online-python.com](https://www.online-python.com/)** It allows you to write and execute Python code instantly without any setup.
 
 To run a file locally: open a terminal in the folder where your .py file is and type:
 

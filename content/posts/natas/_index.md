@@ -1,6 +1,6 @@
 ---
-title: "natas"
+title: "natas "
 weight: 2
 ---
 
-Walkthrough of overthewire natas
+Walkthrough of **[overthewire](https://overthewire.org/)** natas

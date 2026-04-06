@@ -11,7 +11,7 @@ tags:
   - pwnable.kr
 ---
 
-> **Source:** [#pwnable.kr](https://pwnable.kr/) — walkthrough notes from their **`fd`** challenge. You don’t need an account or to follow along to read this; it’s just context for where the problem came from.
+> **Source:** **[pwnable.kr](https://pwnable.kr/)**: — walkthrough notes from their **`fd`** challenge. You don’t need an account or to follow along to read this; it’s just context for where the problem came from.
 
 > "Mommy! what is a file descriptor in lunix?"
 

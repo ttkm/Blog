@@ -1,5 +1,5 @@
 ---
-title: "Natas Level 1"
+title: "Natas 1 - Right-Click Bypass"
 date: 2026-02-16T15:05:00-06:00
 draft: false
 tags:
