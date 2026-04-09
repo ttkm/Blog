@@ -12,6 +12,8 @@ tags:
 
 Natas teaches the basics of server-side web security. This walkthrough uses cURL so you get used to the command line and useful options.
 
+> Each level has access to the password of the next level. Our job is to somehow obtain that next password and level up. All passwords are also stored in `/etc/natas_webpass/`. E.g. the password for natas5 is stored in the file `/etc/natas_webpass/natas5` and only readable by natas4 and natas5.
+
 For the first level we're given:
 
 - **Username:** `natas0`
