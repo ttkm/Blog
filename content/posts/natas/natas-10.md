@@ -1,7 +1,7 @@
 ---
 title: "Natas 10 - ???"
 date: 2026-04-09T16:23:56-05:00
-draft: false
+draft: true
 toc: false
 images:
 tags:
