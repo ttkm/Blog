@@ -1,0 +1,177 @@
+/* ----- Single post page ----- */
+.post {
+  background-color: transparent !important;
+  color: var(--OffWhite) !important;
+}
+
+.post-excerpt {
+  color: var(--DimListText) !important;
+  font-style: italic;
+}
+
+.post-info,
+.post-info p,
+.post-info a {
+  color: var(--DimListText) !important;
+}
+
+.post-info a:hover {
+  color: var(--Maize) !important;
+  border-bottom-color: var(--Maize) !important;
+}
+
+.post-tags {
+  color: var(--DimListText) !important;
+}
+
+.post-tags a {
+  color: var(--Maize) !important;
+}
+
+.post-title a {
+  color: var(--Secondary) !important;
+}
+
+.post-title a:hover {
+  color: var(--Maize) !important;
+}
+
+/* Post list (archive) – dimmed text & borders */
+.post-year,
+.post-day {
+  color: var(--DimListText) !important;
+}
+
+.post-item {
+  border-bottom: 2px dashed var(--ShadeDark) !important;
+}
+
+.post-item-inner {
+  color: var(--OffWhite) !important;
+}
+
+.post-item-inner:hover {
+  color: var(--Maize) !important;
+}
+
+/* Pagination */
+.pagination__title-h {
+  background: var(--GreenBG) !important;
+  color: var(--DimListText) !important;
+  border: 1px solid var(--BorderDark) !important;
+}
+
+.pagination .button a,
+.pagination__buttons a {
+  color: var(--OffWhite) !important;
+}
+
+.pagination .button a:hover,
+.pagination__buttons a:hover {
+  color: var(--Maize) !important;
+}
+
+.pagination hr {
+  background: var(--BorderDark) !important;
+}
+
+/* Footer inner */
+.footer__inner,
+.footer__content {
+  color: var(--DimListText) !important;
+}
+
+.footer__content a {
+  color: var(--Maize) !important;
+}
+
+.footer__content > *:not(:last-child)::after {
+  color: var(--DimListText) !important;
+}
+
+/* Sharing buttons */
+.sharing-buttons {
+  font-family: var(--font-steam) !important;
+}
+
+.sharing-buttons .resp-sharing-button__link {
+  color: var(--Maize) !important;
+}
+
+.sharing-buttons .resp-sharing-button {
+  font-family: var(--font-steam) !important;
+}
+
+.sharing-buttons .resp-sharing-button__link:hover {
+  color: var(--OffWhite) !important;
+}
+
+/* Table of contents: title + square bullets */
+.toc-title {
+  color: var(--Secondary) !important;
+  font-family: var(--font-heading) !important;
+  opacity: 0.8 !important;
+}
+
+#toc ul,
+#TableOfContents ul {
+  list-style-type: square !important;
+  list-style-position: outside !important;
+}
+
+/* Figcaption */
+figcaption {
+  color: var(--DimListText) !important;
+  opacity: 0.9;
+}
+
+/* Tags in post-info (e.g. .tag) */
+.post-info .tag,
+span.tag {
+  color: var(--DimListText) !important;
+}
+
+.post-info .tag a,
+span.tag a {
+  color: var(--Maize) !important;
+}
+
+/* Code toolbar (Prism copy button etc.) */
+.code-toolbar .toolbar-item a {
+  background: var(--DarkGreenBG) !important;
+  color: var(--OffWhite) !important;
+  border: 1px solid var(--ShadeDark) !important;
+  font-family: var(--font-steam) !important;
+}
+
+.code-toolbar .toolbar-item a:hover {
+  background: var(--MaizeBG) !important;
+  color: var(--OffWhite) !important;
+}
+
+/* Code blocks and language labels – square (no radius) */
+.highlight,
+.highlight pre,
+.highlight code,
+pre[class*="language-"],
+code[class*="language-"],
+:not(pre) > code[class*="language-"],
+div.code-toolbar,
+div.code-toolbar > .toolbar > .toolbar-item > a,
+div.code-toolbar > .toolbar > .toolbar-item > button,
+div.code-toolbar > .toolbar > .toolbar-item > span {
+  border-radius: 0 !important;
+}
+
+.highlight {
+  background: var(--DarkGreenBG) !important;
+  border-top: var(--BorderInset) !important;
+  border-right: var(--BorderInset) !important;
+  border-left: var(--BorderInsetBottomLeft) !important;
+}
+
+.highlight pre {
+  margin: 0 !important;
+  padding: 10px 14px !important;
+}
+

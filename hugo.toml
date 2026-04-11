@@ -21,8 +21,12 @@ title = """
 """
 theme = 'hello-friend-ng'
 
+[page]
+  nextPrevInSectionSortOrder = 'asc'
+  nextPrevSortOrder = 'asc'
+
 [params]
-  # Custom CSS is loaded from assets/css/custom.css via layouts/partials/extra-head.html
+  # Custom CSS: assets/css/custom/*.css concatenated in layouts/partials/extra-head.html
   customCSS = []
 
   [params.Logo]

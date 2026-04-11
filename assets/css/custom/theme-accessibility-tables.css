@@ -1,0 +1,47 @@
+/* Theme toggle */
+.theme-toggler {
+  color: var(--OffWhite) !important;
+}
+
+/* Dark theme: reuse same palette (slightly darker emphasis) */
+[data-theme="dark"] body,
+@media (prefers-color-scheme: dark) body {
+  background-color: var(--DarkGreenBG) !important;
+  color: var(--OffWhite) !important;
+}
+
+[data-theme="dark"] .header,
+[data-theme="dark"] .menu,
+[data-theme="dark"] .content,
+@media (prefers-color-scheme: dark) .header,
+@media (prefers-color-scheme: dark) .menu,
+@media (prefers-color-scheme: dark) .content {
+  background: var(--DarkGreenBG) !important;
+  background-color: var(--DarkGreenBG) !important;
+}
+
+/* Focus / accessibility */
+.screen-reader-text:focus {
+  color: var(--Maize) !important;
+  box-shadow: 0 0 2px 2px var(--MaizeBG);
+}
+
+/* Tables */
+table,
+th,
+td {
+  border-color: var(--BorderDark) !important;
+}
+
+th,
+.post-content table thead tr {
+  background: var(--DarkGreenBG) !important;
+  color: var(--OffWhite) !important;
+}
+
+.post-content table tbody tr,
+.post-content table td {
+  background: var(--GreenBG) !important;
+  color: var(--OffWhite) !important;
+}
+

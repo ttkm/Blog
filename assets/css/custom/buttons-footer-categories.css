@@ -1,0 +1,120 @@
+/* Buttons – classic VGUI raised border, square (no radius) */
+button,
+.button,
+a.button {
+  background: var(--LightGreenBG) !important;
+  color: var(--OffWhite) !important;
+  border-top: var(--BorderOutset) !important;
+  border-right: var(--BorderOutset) !important;
+  border-bottom: var(--BorderOutsetBottomLeft) !important;
+  border-left: var(--BorderOutsetBottomLeft) !important;
+  border-radius: 0 !important;
+  font-family: var(--font-steam) !important;
+  font-weight: lighter !important;
+  opacity: 0.8 !important;
+}
+
+button:hover,
+.button:hover,
+a.button:hover {
+  background: var(--GreenBG) !important;
+  color: var(--OffWhite) !important;
+}
+
+.button.outline {
+  border-top: var(--BorderInset) !important;
+  border-right: var(--BorderInset) !important;
+  border-bottom: var(--BorderInsetBottomLeft) !important;
+  border-left: var(--BorderInsetBottomLeft) !important;
+  border-radius: 0 !important;
+  color: var(--OffWhite) !important;
+}
+
+/* Pagination (next/previous post) – square, consistent with Steam UI */
+.pagination .button,
+.pagination span.button {
+  border-radius: 0 !important;
+}
+
+.pagination__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pagination .button a {
+  padding: 10px 14px;
+  border-radius: 0 !important;
+}
+
+/* Footer */
+.footer {
+  color: var(--DimListText) !important;
+}
+
+.footer a {
+  color: var(--Maize) !important;
+}
+
+/* Post list */
+.posts .post-date,
+.posts .post-meta {
+  color: var(--DimListText) !important;
+}
+
+/* Posts section categories (/posts) – Old Steam-style square containers */
+.category-list {
+  list-style: none;
+  margin: 18px 0 0 0;
+  padding: 0;
+}
+
+.category-list__item {
+  margin: 0 0px 25px 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.category-list__item .post-item-inner {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  min-width: 190px;
+  background: var(--DarkGreenBG);
+  border-top: var(--BorderOutset);
+  border-right: var(--DarkGreenBG);
+  border-bottom: var(--BorderOutsetBottomLeft);
+  border-left: var(--BorderOutset);
+  text-decoration: none !important;
+}
+
+.category-list__item .post-item-inner:hover {
+  background: var(--GreenBG);
+}
+
+.category-list__title {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-family: var(--font-heading);
+  color: var(--OffWhite);
+}
+
+.category-list__desc {
+  flex: 1;
+  min-width: 0;
+  font-size: 1rem;
+  color: var(--DimListText);
+  line-height: 1.3;
+}
+
+.category-list__meta {
+  font-size: 0.8rem;
+  color: var(--DimListText);
+}
+

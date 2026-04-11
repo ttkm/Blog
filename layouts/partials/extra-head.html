@@ -2,7 +2,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
-{{/* Custom Steam theme CSS – loaded via pipeline so it always applies */}}
-{{ with resources.Get "css/custom.css" }}
+{{/* Custom Steam theme: concat assets/css/custom/*.css (order matters) */}}
+{{ $steamParts := slice
+  (resources.Get "css/custom/variables.css")
+  (resources.Get "css/custom/header-responsive.css")
+  (resources.Get "css/custom/main-typography-content.css")
+  (resources.Get "css/custom/buttons-footer-categories.css")
+  (resources.Get "css/custom/cs-archive.css")
+  (resources.Get "css/custom/theme-accessibility-tables.css")
+  (resources.Get "css/custom/post-pages-code-blocks.css")
+  (resources.Get "css/custom/forms-404-misc.css")
+  (resources.Get "css/custom/steam-console.css")
+}}
+{{ with resources.Concat "css/steam-theme.css" $steamParts }}
   <link rel="stylesheet" href="{{ .RelPermalink }}" crossorigin="anonymous">
 {{ end }}

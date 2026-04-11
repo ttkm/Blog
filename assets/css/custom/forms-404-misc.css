@@ -1,0 +1,68 @@
+/* Form controls (inputs, textarea, select) – VGUI style */
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+select,
+textarea {
+  background: var(--DarkGreenBG) !important;
+  color: var(--OffWhite) !important;
+  border-top: var(--BorderInset) !important;
+  border-right: var(--BorderInset) !important;
+  border-bottom: var(--BorderInsetBottomLeft) !important;
+  border-left: var(--BorderInsetBottomLeft) !important;
+  font-family: var(--font-steam) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--DisabledText1) !important;
+}
+
+/* Menu trigger (mobile hamburger) */
+.menu-trigger {
+  color: var(--OffWhite) !important;
+}
+
+/* 404 page */
+.error-404,
+#spotlight.error-404 {
+  color: var(--OffWhite) !important;
+}
+
+.error-404 .img-404,
+.error-404 .img-404 svg {
+  color: var(--DimListText) !important;
+}
+
+.banner-404 h1 {
+  color: var(--Secondary) !important;
+  font-family: var(--font-heading) !important;
+}
+
+.banner-404 p {
+  color: var(--OffWhite) !important;
+}
+
+.btn-404 a {
+  color: var(--Maize) !important;
+}
+
+.btn-404 a:hover {
+  color: var(--OffWhite) !important;
+}
+
+/* Selection highlight */
+::selection {
+  background: var(--DarkSecondary) !important;
+  color: var(--OffWhite) !important;
+}
+
+/* Post cover image optional border */
+.post-cover img {
+  border: 1px solid var(--BorderDark) !important;
+}
+

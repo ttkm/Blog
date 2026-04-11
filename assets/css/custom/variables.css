@@ -1,0 +1,68 @@
+/* ========== Old Steam green UI – colours & fonts ==========
+ * Sources (green era):
+ * - OGSteam / original Steam client (config.css-style palette)
+ * - MapleAtMorning/OldSteam-Theme – https://github.com/MapleAtMorning/OldSteam-Theme
+ * - AlpyneDreams/vgui.css – classic VGUI (steam_shared.less, greensteam)
+ * Fonts: Helvetica Neue (body), Bank Gothic (headings). Bank Gothic not on Google Fonts;
+ * Oswald is loaded as web fallback for headings when Bank Gothic isn’t installed.
+ */
+:root {
+  /* OGSteam / OldSteam-Theme palette */
+  --LightGreenBG: #5a6a50;
+  --GreenBG: #4c5844;
+  --DarkHeaderBG: #1f1f1f;
+  --DarkGreenBG: #3e4637;
+  --BorderBright: #808080;
+  --BorderDark: #282e22;
+  --OffWhite: #d8ded3;
+  --Maize: #c4b550;
+  --MaizeBG: #91863c;
+  --Label: #a0aa95;
+  --DimListText: #758666;
+  --DisabledText1: #75806f;
+  --DisabledText2: #282e22;
+  --FullGreen: #7ea64b;
+
+  /* vgui.css steam_shared.less (classic green VGUI) */
+  --LightPrimary: #4c5844;
+  --AlmostLightPrimary: #4a5942;
+  --LighterPrimary: #5a6a50;
+  --ShadeLight: #899281;
+  --ShadeLighter: #b8c4ad;
+  --ShadeDark: #292d23;
+  --Secondary: #c4b550;
+  --DarkSecondary: #96892d;
+
+  /* TF2-Esque: comment out OG block and uncomment below to switch */
+  /*
+  --LightGreenBG: #a39884;
+  --GreenBG: #393532;
+  --DarkGreenBG: #221f1c;
+  --BorderBright: #4a453d;
+  --BorderDark: #4a453d;
+  --OffWhite: #d9d9d9;
+  --Maize: #c4b550;
+  --MaizeBG: #91863c;
+  --Label: #c8bca2;
+  --DimListText: #c8bca2;
+  --DisabledText1: #575248;
+  --DisabledText2: #575248;
+  --FullGreen: #4a453d;
+  */
+
+  --Inset: 1px inset var(--BorderBright);
+  --Outset: 1px outset var(--BorderBright);
+  /* Classic VGUI 3D border: light top/right, dark bottom/left */
+  --BorderOutset: 1px solid var(--ShadeLight);
+  --BorderOutsetBottomLeft: 1px solid var(--ShadeDark);
+  --BorderInset: 1px solid var(--ShadeDark);
+  --BorderInsetBottomLeft: 1px solid var(--ShadeLight);
+  --MaizeFilter: brightness(0) saturate(100%) invert(75%) sepia(22%) saturate(895%) hue-rotate(15deg) brightness(90%) contrast(95%);
+  --OffWhiteFilter: brightness(0) saturate(100%) invert(93%) sepia(10%) saturate(157%) hue-rotate(50deg) brightness(95%) contrast(91%);
+  --DisabledText1Filter: brightness(0) saturate(100%) invert(52%) sepia(22%) saturate(374%) hue-rotate(49deg) brightness(93%) contrast(91%);
+
+  /* Body: Helvetica Neue (Steam UI style). Headings: Bank Gothic (install locally) or Oswald (web fallback). */
+  --font-steam: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-heading: "Bank Gothic", "Oswald", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+

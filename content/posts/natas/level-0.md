@@ -1,6 +1,5 @@
 ---
 title: "Natas 0 - Comments"
-weight: 10
 date: 2026-02-16T15:00:00-06:00
 draft: false
 tags:

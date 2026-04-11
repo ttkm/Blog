@@ -1,0 +1,234 @@
+/* ========== Steam console modal (open with / ) ========== */
+.steam-console {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 40px;
+  box-sizing: border-box;
+}
+
+.steam-console[hidden] {
+  display: none !important;
+}
+
+body.steam-console-open {
+  overflow: hidden;
+}
+
+.steam-console__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+.steam-console__panel {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  min-height: 420px;
+  max-height: 85vh;
+  margin: 0 12px;
+  display: flex;
+  flex-direction: column;
+  background: var(--DarkGreenBG);
+  color: #fff;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border-top: 1px solid var(--ShadeLight);
+  border-right: 1px solid var(--ShadeLight);
+  border-bottom: 1px solid var(--ShadeDark);
+  border-left: 1px solid var(--ShadeDark);
+}
+
+.steam-console__titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  background: var(--GreenBG);
+  border-bottom: 1px solid var(--ShadeDark);
+  flex-shrink: 0;
+}
+
+.steam-console__title {
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.steam-console__close {
+  background: transparent;
+  border: none;
+  border-radius: 0 !important;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 6px;
+  margin: -4px -4px 0 0;
+}
+
+.steam-console__close:hover {
+  color: var(--Maize);
+}
+
+.steam-console__log {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 12px 14px;
+  min-height: 280px;
+  background: var(--DarkGreenBG);
+}
+
+.steam-console__line {
+  color: var(--DimListText);
+  word-break: break-word;
+}
+
+.steam-console__line--maize {
+  color: var(--Secondary);
+}
+
+.steam-console__input-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--GreenBG);
+  border-top: 1px solid var(--ShadeDark);
+  flex-shrink: 0;
+}
+
+.steam-console__input-slot {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.steam-console__input {
+  width: 100%;
+  min-width: 0;
+  height: 36px;
+  box-sizing: border-box;
+  background: var(--DarkGreenBG) !important;
+  color: #fff !important;
+  border: 1px solid var(--ShadeDark) !important;
+  padding: 0 12px !important;
+  font-family: Consolas, "Courier New", monospace !important;
+  font-size: 14px !important;
+  outline: none !important;
+  border-radius: 0 !important;
+}
+
+.steam-console__suggestions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  margin-top: 2px;
+  max-height: 220px;
+  overflow-y: auto;
+  background: var(--DarkGreenBG);
+  border: 1px solid var(--ShadeDark);
+  border-radius: 0;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.steam-console__suggestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: var(--OffWhite);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  border: none;
+  border-radius: 0;
+  text-align: left;
+  background: transparent;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.steam-console__suggestion:hover {
+  background: var(--GreenBG);
+  color: #fff;
+}
+
+.steam-console__suggestion--selected {
+  background: var(--MaizeBG);
+  color: #fff;
+  box-shadow: inset 0 0 0 1px var(--Secondary);
+}
+
+.steam-console__suggestion-title {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.steam-console__suggestion-slug {
+  flex-shrink: 0;
+  color: var(--DimListText);
+  font-size: 12px;
+}
+
+.steam-console__suggestion--selected .steam-console__suggestion-slug {
+  color: var(--ShadeLighter);
+}
+
+.steam-console__input::placeholder {
+  color: var(--DisabledText1) !important;
+}
+
+.steam-console__input:focus {
+  border-color: var(--Maize) !important;
+}
+
+/* Phone: prevent zoom when focusing the console input (iOS zooms if font-size < 16px) */
+@media (max-width: 768px) {
+  .steam-console__input {
+    font-size: 16px !important;
+  }
+}
+
+.steam-console__submit {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 36px;
+  padding: 0 16px 0 14px;
+  background: var(--LightGreenBG) !important;
+  color: #fff !important;
+  border-top: 1px solid var(--ShadeLight) !important;
+  border-right: 1px solid var(--ShadeLight) !important;
+  border-bottom: 1px solid var(--ShadeDark) !important;
+  border-left: 1px solid var(--ShadeDark) !important;
+  border-radius: 0 !important;
+  font-family: var(--font-steam) !important;
+  font-size: 13px !important;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: left !important;
+  width: auto;
+}
+
+.steam-console__submit:hover {
+  background: var(--MaizeBG) !important;
+  color: #fff !important;
+}
