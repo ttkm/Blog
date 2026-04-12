@@ -28,6 +28,26 @@
                     {{ end }}
                 </ul>
 
+                {{ $latest := first 7 (.RegularPagesRecursive.ByDate.Reverse) }}
+                {{ if gt (len $latest) 0 }}
+                <h2 class="posts-latest-title">Latest posts</h2>
+                {{ range $latest.GroupByDate "2006" }}
+                    <div class="posts-group">
+                        <div class="post-year">{{ .Key }}</div>
+                        <ul class="posts-list">
+                            {{ range .Pages }}
+                                <li class="post-item">
+                                    <a href="{{ .Permalink }}" class="post-item-inner">
+                                        <span class="post-title">{{ .Title }}</span>
+                                        <span class="post-day">{{ time.Format "Jan 2" .Date }}</span>
+                                    </a>
+                                </li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                {{ end }}
+                {{ end }}
+
             {{/* Subsections: list posts oldest first (e.g. natas level 0 → 4) */}}
             {{ else if .Pages }}
                 {{ range .Pages.ByDate.GroupByDate "2006" }}
