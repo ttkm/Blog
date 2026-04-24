@@ -19,7 +19,8 @@
                                         {{ $vcount := len (index site.Data "cs-archive") }}
                                         {{ $vcount }} video{{ if ne $vcount 1 }}s{{ end }}
                                     {{ else }}
-                                        {{ len .Pages }} post{{ if gt (len .Pages) 1 }}s{{ end }}
+                                        {{ $n := len .RegularPagesRecursive }}
+                                        {{ $n }} post{{ if gt $n 1 }}s{{ end }}
                                     {{ end }}
                                 </span>
                             </a>
@@ -48,25 +49,7 @@
                 {{ end }}
                 {{ end }}
 
-            {{/* Subsections: list posts oldest first (e.g. natas level 0 → 4) */}}
-            {{ else if .Pages }}
-                {{ range .Pages.ByDate.GroupByDate "2006" }}
-                    <div class="posts-group">
-                        <div class="post-year">{{ .Key }}</div>
-                        <ul class="posts-list">
-                            {{ range .Pages }}
-                                <li class="post-item">
-                                    <a href="{{ .Permalink }}" class="post-item-inner">
-                                        <span class="post-title">{{ .Title }}</span>
-                                        <span class="post-day">{{ time.Format "Jan 2" .Date }}</span>
-                                    </a>
-                                </li>
-                            {{ end }}
-                        </ul>
-                    </div>
-                {{ end }}
-
-            {{/* cs-archive: video rows with thumbnail + hover-to-preview (from data/cs-archive.json, generated from cs-archive-videos.csv) */}}
+            {{/* cs-archive: must run before "section hub" (below); len .Sections is often 0 here */}}
             {{ else if eq .RelPermalink "/posts/cs-archive/" }}
                 {{ $videos := index site.Data "cs-archive" }}
                 {{ if $videos }}
@@ -152,6 +135,59 @@
                     </script>
                 {{ else }}
                     <p style="color:var(--DimListText)">No videos in the archive yet. Run <code>python scripts/csv-to-archive-json.py</code> from the project root to generate <code>data/cs-archive.json</code> from <code>cs-archive-videos.csv</code>.</p>
+                {{ end }}
+
+            {{/* Section with subsections (e.g. labs): show folder rows first, then only posts in this folder */}}
+            {{ else if (gt (len .Sections) 0) }}
+                <ul class="posts-list category-list">
+                    {{ range .Sections.ByWeight }}
+                        <li class="post-item category-list__item">
+                            <a href="{{ .Permalink }}" class="post-item-inner">
+                                <span class="post-title category-list__title">{{ .Title | lower }}</span>
+                                <span class="post-day category-list__meta">
+                                    {{ $n := len .RegularPagesRecursive }}
+                                    {{ $n }} post{{ if gt $n 1 }}s{{ end }}
+                                </span>
+                            </a>
+                            <span class="category-list__desc">{{ .Summary | plainify }}</span>
+                        </li>
+                    {{ end }}
+                </ul>
+                {{ with .RegularPages }}
+                <h2 class="posts-latest-title">In this folder</h2>
+                {{ range .ByDate.GroupByDate "2006" }}
+                    <div class="posts-group">
+                        <div class="post-year">{{ .Key }}</div>
+                        <ul class="posts-list">
+                            {{ range .Pages }}
+                                <li class="post-item">
+                                    <a href="{{ .Permalink }}" class="post-item-inner">
+                                        <span class="post-title">{{ .Title }}</span>
+                                        <span class="post-day">{{ time.Format "Jan 2" .Date }}</span>
+                                    </a>
+                                </li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                {{ end }}
+                {{ end }}
+
+            {{/* Leaf sections: one flat list, oldest first by year */}}
+            {{ else if .RegularPagesRecursive }}
+                {{ range .RegularPagesRecursive.ByDate.GroupByDate "2006" }}
+                    <div class="posts-group">
+                        <div class="post-year">{{ .Key }}</div>
+                        <ul class="posts-list">
+                            {{ range .Pages }}
+                                <li class="post-item">
+                                    <a href="{{ .Permalink }}" class="post-item-inner">
+                                        <span class="post-title">{{ .Title }}</span>
+                                        <span class="post-day">{{ time.Format "Jan 2" .Date }}</span>
+                                    </a>
+                                </li>
+                            {{ end }}
+                        </ul>
+                    </div>
                 {{ end }}
 
             {{ else }}
