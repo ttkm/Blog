@@ -5,10 +5,12 @@ draft: false
 toc: true
 images:
 tags:
-  - untagged
+  - CompTIA
+  - Security
+  - Theory
 ---
 
-We will learn about the basic iobjectives of cyber security: confidentiality, integrity and availability of your operations.
+We will learn about the basic objectives of cyber security: confidentiality, integrity and availability of your operations.
 
 ## Cybersecurity Objectives
 

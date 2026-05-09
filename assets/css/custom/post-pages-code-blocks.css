@@ -113,6 +113,14 @@
   opacity: 0.8 !important;
 }
 
+/* Keep long generated TOC compact (like cs-archive jump list) */
+#toc {
+  max-height: min(52vh, 420px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.4rem;
+}
+
 #toc ul,
 #TableOfContents ul {
   list-style-type: square !important;
