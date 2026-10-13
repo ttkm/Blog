@@ -28,12 +28,8 @@
   color: var(--Maize) !important;
 }
 
-.post-title a {
+.post-title {
   color: var(--Secondary) !important;
-}
-
-.post-title a:hover {
-  color: var(--Maize) !important;
 }
 
 /* Post list (archive) – dimmed text & borders */
