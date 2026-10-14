@@ -102,7 +102,6 @@ main a,
 .post-body a,
 article a,
 .posts .post-title a {
-  color: var(--Maize) !important;
 }
 
 .content a:hover,
