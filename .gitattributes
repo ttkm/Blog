@@ -1,0 +1,3 @@
+content/posts text eol=lf
+assets text eol=lf
+hugo.toml text eol=lf
